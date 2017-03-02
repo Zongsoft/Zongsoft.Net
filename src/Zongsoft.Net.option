@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<options>
+	<option path="/Communication/Net">
+		<ftpServer ftpServer.type="Zongsoft.Communication.Net.Configuration.FtpServerOptionElement, Zongsoft.Net">
+			<users>
+				<user name="admin" password="admin" readOnly="false" homeDirectory="D:\ftp\admin" />
+				<user name="anonymous" password="" readOnly="false" homeDirectory="D:\ftp\anonymous" />
+			</users>
+		</ftpServer>
+	</option>
+</options>

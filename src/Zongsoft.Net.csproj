@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{79BEEF78-ECA8-4848-B9EA-42261D1AC9DE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Zongsoft.Net</RootNamespace>
+    <AssemblyName>Zongsoft.Net</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Zongsoft.CoreLibrary">
+      <HintPath>..\..\Zongsoft.CoreLibrary\src\bin\$(Configuration)\Zongsoft.CoreLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BufferEvaluator.cs" />
+    <Compile Include="Commands\ISenderHost.cs" />
+    <Compile Include="Commands\SendCommand.cs" />
+    <Compile Include="Commands\ServerCommand.cs" />
+    <Compile Include="Commands\ServerCommandBase.cs" />
+    <Compile Include="Commands\ServerStartCommand.cs" />
+    <Compile Include="Commands\ServerStatusCommand.cs" />
+    <Compile Include="Commands\ServerStopCommand.cs" />
+    <Compile Include="Commands\TcpClientCommand.cs" />
+    <Compile Include="Commands\TcpClientConnectCommand.cs" />
+    <Compile Include="Commands\TcpClientDisconnectCommand.cs" />
+    <Compile Include="Commands\TcpClientStatusCommand.cs" />
+    <Compile Include="Configuration\FtpServerOptionElement.cs" />
+    <Compile Include="Configuration\FtpUserOptionElement.cs" />
+    <Compile Include="Configuration\FtpUserOptionElementCollection.cs" />
+    <Compile Include="FtpClient.cs" />
+    <Compile Include="FtpConfiguration.cs" />
+    <Compile Include="FtpPacketizer.cs" />
+    <Compile Include="FtpServer.cs" />
+    <Compile Include="FtpServerChannel.cs" />
+    <Compile Include="FtpServerChannelManager.cs" />
+    <Compile Include="FtpStatement.cs" />
+    <Compile Include="FtpUserProfile.cs" />
+    <Compile Include="Ftp\FtpAborCommand.cs" />
+    <Compile Include="Ftp\FtpAlloCommand.cs" />
+    <Compile Include="Ftp\FtpAppeCommand.cs" />
+    <Compile Include="Ftp\FtpCdupCommand.cs" />
+    <Compile Include="Ftp\FtpCommand.cs" />
+    <Compile Include="Ftp\FtpCommandContext.cs" />
+    <Compile Include="Ftp\FtpCommandLoader.cs" />
+    <Compile Include="Ftp\FtpCwdCommand.cs" />
+    <Compile Include="Ftp\FtpDateUtils.cs" />
+    <Compile Include="Ftp\FtpDeleCommand.cs" />
+    <Compile Include="Ftp\FtpException.cs" />
+    <Compile Include="Ftp\FtpFeatCommand.cs" />
+    <Compile Include="Ftp\FtpHelpCommand.cs" />
+    <Compile Include="Ftp\FtpListCommand.cs" />
+    <Compile Include="Ftp\FtpListFileFormater.cs" />
+    <Compile Include="Ftp\FtpMdtmCommand.cs" />
+    <Compile Include="Ftp\FtpMfmtCommand.cs" />
+    <Compile Include="Ftp\FtpMkdCommand.cs" />
+    <Compile Include="Ftp\FtpMlsdCommand.cs" />
+    <Compile Include="Ftp\FtpMlstCommand.cs" />
+    <Compile Include="Ftp\FtpMlstFileFormater.cs" />
+    <Compile Include="Ftp\FtpNoopCommand.cs" />
+    <Compile Include="Ftp\FtpOptsCommand.cs" />
+    <Compile Include="Ftp\FtpPassCommand.cs" />
+    <Compile Include="Ftp\FtpPasvCommand.cs" />
+    <Compile Include="Ftp\FtpPasvDataChannel.cs" />
+    <Compile Include="Ftp\FtpPortCommand.cs" />
+    <Compile Include="Ftp\FtpPortDataChannel.cs" />
+    <Compile Include="Ftp\FtpPwdCommand.cs" />
+    <Compile Include="Ftp\FtpQuitCommand.cs" />
+    <Compile Include="Ftp\FtpRestCommand.cs" />
+    <Compile Include="Ftp\FtpRetrCommand.cs" />
+    <Compile Include="Ftp\FtpRmdCommand.cs" />
+    <Compile Include="Ftp\FtpRnfrCommand.cs" />
+    <Compile Include="Ftp\FtpRntoCommand.cs" />
+    <Compile Include="Ftp\FtpSessionStatus.cs" />
+    <Compile Include="Ftp\FtpSizeCommand.cs" />
+    <Compile Include="Ftp\FtpStorCommand.cs" />
+    <Compile Include="Ftp\FtpSystCommand.cs" />
+    <Compile Include="Ftp\FtpTransferMode.cs" />
+    <Compile Include="Ftp\FtpTypeCommand.cs" />
+    <Compile Include="Ftp\FtpUserCommand.cs" />
+    <Compile Include="Ftp\IFtpDataChannel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocketAsyncEventArgsPool.cs" />
+    <Compile Include="TcpChannel.cs" />
+    <Compile Include="TcpClient.cs" />
+    <Compile Include="TcpClientChannel.cs" />
+    <Compile Include="TcpPacketizer.cs" />
+    <Compile Include="TcpServer.cs" />
+    <Compile Include="TcpServerChannel.cs" />
+    <Compile Include="TcpServerChannelManager.cs" />
+    <Compile Include="Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Zongsoft.Net.option" />
+    <None Include="Zongsoft.Net.plugin" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
