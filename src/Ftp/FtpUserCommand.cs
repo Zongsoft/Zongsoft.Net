@@ -26,11 +26,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Zongsoft.Services;
-using Zongsoft.Services.Composition;
 
 namespace Zongsoft.Communication.Net.Ftp
 {

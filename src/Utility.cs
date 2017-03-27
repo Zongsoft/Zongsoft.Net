@@ -25,18 +25,13 @@
  */
 
 using System;
-using System.IO;
-using System.Collections.Generic;
-
-using Zongsoft.Services;
-using Zongsoft.Services.Composition;
 
 namespace Zongsoft.Communication
 {
 	internal static class Utility
 	{
 		#region 公共方法
-		public static void ProcessReceive(IExecutor executor, ReceivedEventArgs args)
+		public static void ProcessReceive(Composition.IExecutor executor, ReceivedEventArgs args)
 		{
 			if(args == null)
 				throw new ArgumentNullException("args");
@@ -51,13 +46,13 @@ namespace Zongsoft.Communication
 		#endregion
 
 		#region 嵌套子类
-		public class CommunicationExecutor : Zongsoft.Services.Composition.Executor
+		public class CommunicationExecutor : Composition.Executor
 		{
 			internal CommunicationExecutor(object host) : base(host)
 			{
 			}
 
-			protected override IExecutionContext CreateContext(object parameter)
+			protected override Composition.IExecutionContext CreateContext(object parameter)
 			{
 				var args = parameter as ReceivedEventArgs;
 
@@ -67,7 +62,7 @@ namespace Zongsoft.Communication
 				return base.CreateContext(parameter);
 			}
 
-			protected override ExecutionPipelineContext CreatePipelineContext(IExecutionContext context, ExecutionPipeline pipeline, object parameter)
+			protected override Composition.ExecutionPipelineContext CreatePipelineContext(Composition.IExecutionContext context, Composition.ExecutionPipeline pipeline, object parameter)
 			{
 				var channelContext = context as IChannelContext;
 

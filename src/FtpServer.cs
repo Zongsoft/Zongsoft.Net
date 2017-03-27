@@ -26,18 +26,11 @@
  */
 
 using System;
-using System.IO;
-using System.Collections.Generic;
 using System.Net;
-using System.Net.Sockets;
-using System.Text;
 
 using Zongsoft.Collections;
 using Zongsoft.Communication.Net.Ftp;
 using Zongsoft.Services;
-using Zongsoft.Services.Composition;
-using Zongsoft.Options;
-using Zongsoft.Options.Configuration;
 
 namespace Zongsoft.Communication.Net
 {
@@ -54,13 +47,11 @@ namespace Zongsoft.Communication.Net
 		#endregion
 
 		#region 构造函数
-		public FtpServer()
-			: this(null)
+		public FtpServer() : this(null)
 		{
 		}
 
-		public FtpServer(Configuration.FtpServerOptionElement configuration)
-			: base(21)
+		public FtpServer(Configuration.FtpServerOptionElement configuration) : base(21)
 		{
 			//不要在构造函数检测参数是否空，应该在OnStart方法中检测
 			_configuration = configuration;

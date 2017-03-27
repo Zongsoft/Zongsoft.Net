@@ -31,8 +31,6 @@ using System.ComponentModel;
 using System.Threading;
 using System.Text;
 
-using Zongsoft.Services;
-using Zongsoft.Services.Composition;
 using Zongsoft.Runtime.Caching;
 
 namespace Zongsoft.Communication.Net
@@ -49,7 +47,7 @@ namespace Zongsoft.Communication.Net
 		#region 成员字段
 		private IPEndPoint _remoteEP;
 		private TcpClientChannel _channel;
-		private IExecutor _executor;
+		private Composition.IExecutor _executor;
 		private IBufferManagerSelector _bufferSelector;
 		#endregion
 
@@ -158,7 +156,7 @@ namespace Zongsoft.Communication.Net
 			}
 		}
 
-		public IExecutor Executor
+		public Composition.IExecutor Executor
 		{
 			get
 			{
@@ -265,7 +263,7 @@ namespace Zongsoft.Communication.Net
 		#endregion
 
 		#region 虚拟方法
-		protected virtual IExecutor CreateExecutor()
+		protected virtual Composition.IExecutor CreateExecutor()
 		{
 			return new Utility.CommunicationExecutor(this);
 		}
