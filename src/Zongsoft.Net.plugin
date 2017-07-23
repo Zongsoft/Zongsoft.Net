@@ -13,19 +13,19 @@
 	</manifest>
 
 	<extension path="/Workbench/Executor/Commands">
-		<commandNode name="Net">
-			<commandNode name="FtpServer"
+		<object name="Net">
+			<object name="FtpServer"
 			             type="Zongsoft.Communication.Commands.ServerCommand, Zongsoft.Net"
 			             server="{srv:FtpServer, Communication}" />
 
-			<commandNode name="TcpServer"
+			<object name="TcpServer"
 			             type="Zongsoft.Communication.Commands.ServerCommand, Zongsoft.Net"
 			             server="{srv:TcpServer, Communication}" />
 
-			<commandNode name="TcpClient"
+			<object name="TcpClient"
 			             type="Zongsoft.Communication.Commands.TcpClientCommand, Zongsoft.Net"
 			             client="{srv:TcpClient, Communication}" />
-		</commandNode>
+		</object>
 	</extension>
 
 	<extension path="/Workbench/Executor/Commands/Net/FtpServer">
