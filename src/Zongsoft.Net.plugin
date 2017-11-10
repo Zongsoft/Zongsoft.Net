@@ -14,17 +14,23 @@
 
 	<extension path="/Workbench/Executor/Commands">
 		<object name="Net">
-			<object name="FtpServer"
-			             type="Zongsoft.Communication.Commands.ServerCommand, Zongsoft.Net"
-			             server="{srv:FtpServer, Communication}" />
+			<object name="FtpServer">
+				<ftpServer.command>
+					<object server="{srv:FtpServer, Communication}" type="Zongsoft.Communication.Commands.ServerCommand, Zongsoft.Net" />
+				</ftpServer.command>
+			</object>
 
-			<object name="TcpServer"
-			             type="Zongsoft.Communication.Commands.ServerCommand, Zongsoft.Net"
-			             server="{srv:TcpServer, Communication}" />
+			<object name="TcpServer">
+				<tcpServer.command>
+					<object server="{srv:TcpServer, Communication}" type="Zongsoft.Communication.Commands.ServerCommand, Zongsoft.Net" />
+				</tcpServer.command>
+			</object>
 
-			<object name="TcpClient"
-			             type="Zongsoft.Communication.Commands.TcpClientCommand, Zongsoft.Net"
-			             client="{srv:TcpClient, Communication}" />
+			<object name="TcpClient">
+				<tcpClient.command>
+					<object client="{srv:TcpClient, Communication}" type="Zongsoft.Communication.Commands.TcpClientCommand, Zongsoft.Net" />
+				</tcpClient.command>
+			</object>
 		</object>
 	</extension>
 
