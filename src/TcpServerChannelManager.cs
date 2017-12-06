@@ -107,6 +107,9 @@ namespace Zongsoft.Communication.Net
 			}
 		}
 
+		/// <summary>
+		/// 获取或设置当前通道管理器的协议解析器工厂。
+		/// </summary>
 		public IPacketizerFactory PacketizerFactory
 		{
 			get

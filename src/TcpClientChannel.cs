@@ -55,19 +55,19 @@ namespace Zongsoft.Communication.Net
 		#endregion
 
 		#region 构造函数
-		public TcpClientChannel(IPEndPoint remoteEP) : this(remoteEP, 0, null)
+		public TcpClientChannel(TcpClient client, IPEndPoint remoteEP) : this(client, remoteEP, 0, null)
 		{
 		}
 
-		public TcpClientChannel(IPEndPoint remoteEP, IPacketizer packetizer) : this(remoteEP, 0, packetizer)
+		public TcpClientChannel(TcpClient client, IPEndPoint remoteEP, IPacketizer packetizer) : this(client, remoteEP, 0, packetizer)
 		{
 		}
 
-		public TcpClientChannel(IPEndPoint remoteEP, int channelId) : this(remoteEP, channelId, null)
+		public TcpClientChannel(TcpClient client, IPEndPoint remoteEP, int channelId) : this(client, remoteEP, channelId, null)
 		{
 		}
 
-		public TcpClientChannel(IPEndPoint remoteEP, int channelId, IPacketizer packetizer) : base(channelId)
+		public TcpClientChannel(TcpClient client, IPEndPoint remoteEP, int channelId, IPacketizer packetizer) : base(channelId, client)
 		{
 			if(remoteEP == null)
 				throw new ArgumentNullException("remoteEP");

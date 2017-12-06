@@ -131,7 +131,7 @@ namespace Zongsoft.Communication.Net
 				}
 				catch(CommandNotFoundException)
 				{
-					args.Channel.Send("502 Command not implemented.", null);
+					((FtpServerChannel)args.Channel).Send("502 Command not implemented.", null);
 				}
 			}
 

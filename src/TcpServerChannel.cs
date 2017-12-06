@@ -41,18 +41,11 @@ namespace Zongsoft.Communication.Net
 		#region 成员字段
 		private DateTime _acceptedTime;
 		private EndPoint _remoteEndPoint;
-		private TcpServerChannelManager _channelManager;
 		#endregion
 
 		#region 构造函数
-		internal protected TcpServerChannel(TcpServerChannelManager channelManager, int channelId) : base(channelId)
+		internal protected TcpServerChannel(TcpServerChannelManager channelManager, int channelId) : base(channelId, channelManager)
 		{
-			if(channelManager == null)
-				throw new ArgumentNullException("channelManager");
-
-			//设置通道管理器
-			_channelManager = channelManager;
-
 			//初始化接受连接的时间
 			_acceptedTime = new DateTime(1900, 1, 1);
 		}
@@ -77,7 +70,7 @@ namespace Zongsoft.Communication.Net
 		{
 			get
 			{
-				return _channelManager;
+				return (TcpServerChannelManager)base.Host;
 			}
 		}
 

@@ -84,7 +84,7 @@ namespace Zongsoft.Communication.Commands
 		{
 			get
 			{
-				return this.Channel;
+				return this.Channel as ISender;
 			}
 		}
 		#endregion

@@ -54,7 +54,7 @@ namespace Zongsoft.Communication.Net
 		#endregion
 
 		#region 构造函数
-		protected TcpChannel(int channelId) : base(channelId)
+		protected TcpChannel(int channelId, object host) : base(channelId, host)
 		{
 			_receivingBufferSize = 32 * 1024;
 			_sendingBlocking = new ManualResetEventSlim(true);

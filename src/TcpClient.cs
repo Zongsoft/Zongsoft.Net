@@ -109,10 +109,7 @@ namespace Zongsoft.Communication.Net
 				{
 					var channel = Interlocked.CompareExchange(
 						ref _channel,
-						new TcpClientChannel(
-							_remoteEP,
-							new TcpPacketizer(this.BufferSelector)
-						), null);
+						new TcpClientChannel(this, _remoteEP, new TcpPacketizer(this.BufferSelector)), null);
 
 					if(channel == null)
 					{
