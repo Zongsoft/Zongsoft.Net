@@ -175,7 +175,7 @@ namespace Zongsoft.Communication.Net
 				this.Root.Loader = new FtpCommandLoader();
 			}
 
-			protected override CommandContext CreateCommandContext(CommandExpression expression, CommandTreeNode node, object parameter)
+			protected override CommandContext CreateCommandContext(CommandExecutorContext session, CommandExpression expression, CommandTreeNode node, object parameter)
 			{
 				var args = parameter as ReceivedEventArgs;
 
@@ -183,7 +183,7 @@ namespace Zongsoft.Communication.Net
 					throw new InvalidOperationException("Invalid execution parameter.");
 
 				return new FtpCommandContext(
-						this,
+						session,
 						expression,
 						node.Command,
 						(FtpServerChannel)args.Channel,
