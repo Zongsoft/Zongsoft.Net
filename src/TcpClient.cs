@@ -148,8 +148,8 @@ namespace Zongsoft.Communication.Net
 			{
 				if(_channel == null)
 					_remoteEP = value;
-
-				throw new InvalidOperationException();
+				else
+					throw new InvalidOperationException();
 			}
 		}
 
