@@ -67,13 +67,13 @@ namespace Zongsoft.Communication.Net
 			base.Send(text + "\r\n", this.Encoding, asyncState);
 		}
 
-		protected override void OnReceived(ReceivedEventArgs args)
+		protected override void OnReceived(object receivedObject)
 		{
-			CurrentStatement = args.ReceivedObject as FtpStatement;
+			statement = receivedObject as FtpStatement;
 
-			Console.WriteLine("[{0:000}]:{1} {2}", this.ChannelId, CurrentStatement.Name, CurrentStatement.Argument);
+			Console.WriteLine("[{0:000}]:{1} {2}", this.ChannelId, statement.Name, statement.Argument);
 
-			base.OnReceived(args);
+			base.OnReceived(receivedObject);
 		}
 
 		protected override void OnAccepted(SocketAsyncEventArgs asyncArgs)
@@ -85,7 +85,7 @@ namespace Zongsoft.Communication.Net
 			base.OnAccepted(asyncArgs);
 		}
 
-		protected override void OnClosed(ChannelEventArgs args)
+		protected override void OnClosed()
 		{
 			CloseDataChannel();
 
@@ -98,7 +98,7 @@ namespace Zongsoft.Communication.Net
 			if(stream != null)
 				stream.Dispose();
 
-			base.OnClosed(args);
+			base.OnClosed();
 		}
 		#endregion
 
@@ -283,7 +283,7 @@ namespace Zongsoft.Communication.Net
 		/// <summary>
 		/// 当前执行的Ftp命令
 		/// </summary>
-		public FtpStatement CurrentStatement
+		public FtpStatement statement
 		{
 			get;
 			set;
@@ -298,7 +298,7 @@ namespace Zongsoft.Communication.Net
 			TransferMode = FtpTransferMode.Ascii;
 			Status = FtpSessionStatus.NotLogin;
 			User = null;
-			CurrentStatement = null;
+			statement = null;
 			CurrentDir = RootPath;
 			FileOffset = 0;
 			UpFileFailed = false;

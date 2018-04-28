@@ -30,11 +30,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Text;
-
-using Zongsoft.Diagnostics;
-using Zongsoft.ComponentModel;
 
 namespace Zongsoft.Communication.Net
 {
@@ -254,7 +249,7 @@ namespace Zongsoft.Communication.Net
 					_lastConnectTime = DateTime.Now;
 
 					//激发“Failed”事件
-					this.OnFailed(new ChannelFailureEventArgs(this, ex, asyncState));
+					this.OnFailed(ex, asyncState);
 				}
 			}
 			catch
@@ -296,7 +291,7 @@ namespace Zongsoft.Communication.Net
 				if(!connected)
 				{
 					//激发“Failed”事件
-					this.OnFailed(new ChannelFailureEventArgs(this, "Connect faild.", asyncState));
+					this.OnFailed(new InvalidOperationException("Connect faild."), asyncState);
 
 					//连接失败则返回失败
 					return false;
@@ -329,10 +324,39 @@ namespace Zongsoft.Communication.Net
 		#endregion
 
 		#region 激发事件
-		protected virtual void OnConnected(ChannelAsyncEventArgs args)
+		protected virtual void OnConnected(object asyncState)
 		{
-			if(this.Connected != null)
-				this.Connected(this, args);
+			this.Connected?.Invoke(this, new ChannelAsyncEventArgs(this, asyncState));
+
+			//激发TcpClient的连接完成事件
+			((TcpClient)this.Host).OnConnected(this, asyncState);
+		}
+
+		protected override void OnFailed(Exception exception, object asyncState)
+		{
+			//调用基类同名方法
+			base.OnFailed(exception, asyncState);
+
+			//激发TcpClient的失败事件
+			((TcpClient)this.Host).OnFailed(this, exception, asyncState);
+		}
+
+		protected override void OnSent(object asyncState)
+		{
+			//调用基类同名方法
+			base.OnSent(asyncState);
+
+			//激发TcpClient的发送完成事件
+			((TcpClient)this.Host).OnSent(this, asyncState);
+		}
+
+		protected override void OnReceived(object receivedObject)
+		{
+			//调用基类同名方法
+			base.OnReceived(receivedObject);
+
+			//激发TcpClient的接收成功事件
+			((TcpClient)this.Host).OnReceived(this, receivedObject);
 		}
 		#endregion
 
@@ -354,7 +378,7 @@ namespace Zongsoft.Communication.Net
 				//在后台线程中激发“Connected”事件
 				Task.Factory.StartNew(() =>
 				{
-					this.OnConnected(new ChannelAsyncEventArgs(this, asyncArgs.UserToken));
+					this.OnConnected(asyncArgs.UserToken);
 				});
 
 				//启动异步接收数据
@@ -365,7 +389,7 @@ namespace Zongsoft.Communication.Net
 			_connectWaitHandle.Set();
 
 			if(asyncArgs.SocketError != SocketError.Success && asyncArgs.SocketError != SocketError.IsConnected)
-				this.OnFailed(new ChannelFailureEventArgs(this, "Connect faild.", asyncArgs.UserToken));
+				this.OnFailed(new InvalidOperationException("Connect faild."), asyncArgs.UserToken);
 		}
 		#endregion
 

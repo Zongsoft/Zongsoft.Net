@@ -168,7 +168,7 @@ namespace Zongsoft.Communication.Net.Ftp
 
             if (!channel.UpFileFailed)
             {
-                var statement = channel.CurrentStatement;
+                var statement = channel.statement;
 
                 channel.Send("226 Transfer complete.");
 

@@ -452,7 +452,7 @@ namespace Zongsoft.Communication.Net
 			try
 			{
 				//首先激发“Failed”事件，以免在通道关闭后，导致客户端取消了对“Failed”事件的关联
-				this.OnFailed(new ChannelFailureEventArgs(this, message, state));
+				this.OnFailed(new InvalidOperationException(message), state);
 			}
 			finally
 			{
@@ -466,14 +466,11 @@ namespace Zongsoft.Communication.Net
 			//更新最后接收到数据的时间，因为空包也要计算在内，所以必须放在下面的条件判断之前
 			this.LastReceivedTime = DateTime.Now;
 
-			//创建接收数据事件参数对象
-			var eventArgs = new ReceivedEventArgs(this, receivedObject);
-
 			//启动一个新异步任务进行事件回调
 			System.Threading.Tasks.Task.Factory.StartNew(() =>
 			{
 				//激发当前通道的“Received”事件
-				this.OnReceived(eventArgs);
+				this.OnReceived(receivedObject);
 
 				//如果接收到的对象是流则关闭它
 				if(receivedObject is Stream)

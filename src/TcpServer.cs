@@ -29,9 +29,6 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.ComponentModel;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Zongsoft.Runtime.Caching;
 
@@ -250,7 +247,7 @@ namespace Zongsoft.Communication.Net
 				channel.OnAccept(asyncArgs, () =>
 				{
 					//激发“Accepted”事件
-					this.OnAccepted(new ChannelEventArgs(channel));
+					this.OnAccepted(channel);
 				});
 			}
 
@@ -260,10 +257,9 @@ namespace Zongsoft.Communication.Net
 		#endregion
 
 		#region 激发事件
-		protected virtual void OnAccepted(ChannelEventArgs args)
+		protected virtual void OnAccepted(IChannel channel)
 		{
-			if(this.Accepted != null)
-				this.Accepted(this, args);
+			this.Accepted?.Invoke(this, new ChannelEventArgs(channel));
 		}
 		#endregion
 

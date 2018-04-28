@@ -31,17 +31,14 @@ namespace Zongsoft.Communication
 	internal static class Utility
 	{
 		#region 公共方法
-		public static void ProcessReceive(Composition.IExecutor executor, ReceivedEventArgs args)
+		public static void ProcessReceive(Composition.IExecutor executor, IChannel channel, object data)
 		{
-			if(args == null)
-				throw new ArgumentNullException("args");
-
 			//如果执行器参数为空，不抛出异常，直接退出
 			if(executor == null)
 				return;
 
 			//通过执行器执行当前请求
-			executor.Execute(args);
+			executor.Execute(new ReceivedEventArgs(channel, data));
 		}
 		#endregion
 

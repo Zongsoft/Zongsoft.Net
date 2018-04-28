@@ -110,14 +110,6 @@ namespace Zongsoft.Communication.Net
 					var channel = Interlocked.CompareExchange(
 						ref _channel,
 						new TcpClientChannel(this, _remoteEP, new TcpPacketizer(this.BufferSelector)), null);
-
-					if(channel == null)
-					{
-						_channel.Connected += Channel_Connected;
-						_channel.Failed += Channel_Failed;
-						_channel.Received += Channel_Received;
-						_channel.Sent += Channel_Sent;
-					}
 				}
 
 				return _channel;
@@ -267,53 +259,27 @@ namespace Zongsoft.Communication.Net
 		#endregion
 
 		#region 激发事件
-		protected virtual void OnConnected(ChannelAsyncEventArgs args)
+		internal protected virtual void OnConnected(IChannel channel, object asyncState)
 		{
-			if(this.Connected != null)
-				this.Connected(this, args);
+			this.Connected?.Invoke(this, new ChannelAsyncEventArgs(channel, asyncState));
 		}
 
-		protected virtual void OnFailed(ChannelFailureEventArgs args)
+		internal protected virtual void OnFailed(IChannel channel, Exception exception, object asyncState)
 		{
-			if(this.Failed != null)
-				this.Failed(this, args);
+			this.Failed?.Invoke(this, new ChannelFailureEventArgs(channel, exception, asyncState));
 		}
 
-		protected virtual void OnReceived(ReceivedEventArgs args)
+		internal protected virtual void OnReceived(IChannel channel, object receivedObject)
 		{
 			//处理接收到的数据
-			Utility.ProcessReceive(_executor, args);
+			Utility.ProcessReceive(_executor, channel, receivedObject);
 
-			if(this.Received != null)
-				this.Received(this, args);
+			this.Received?.Invoke(this, new ReceivedEventArgs(channel, receivedObject));
 		}
 
-		protected virtual void OnSent(SentEventArgs args)
+		internal protected virtual void OnSent(IChannel channel, object asyncState)
 		{
-			if(this.Sent != null)
-				this.Sent(this, args);
-		}
-		#endregion
-
-		#region 通道事件
-		private void Channel_Connected(object sender, ChannelAsyncEventArgs e)
-		{
-			this.OnConnected(e);
-		}
-
-		private void Channel_Failed(object sender, ChannelFailureEventArgs e)
-		{
-			this.OnFailed(e);
-		}
-
-		private void Channel_Received(object sender, ReceivedEventArgs e)
-		{
-			this.OnReceived(e);
-		}
-
-		private void Channel_Sent(object sender, SentEventArgs e)
-		{
-			this.OnSent(e);
+			this.Sent?.Invoke(this, new SentEventArgs(channel, asyncState));
 		}
 		#endregion
 	}
