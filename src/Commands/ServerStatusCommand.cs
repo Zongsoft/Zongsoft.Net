@@ -120,10 +120,10 @@ namespace Zongsoft.Communication.Commands
 				output.Write(CommandOutletColor.Red, ResourceUtility.GetString("${Stopped}"));
 			output.Write(CommandOutletColor.DarkGray, "]");
 
-			if(listener is IWorker && ((IWorker)listener).Disabled)
-				output.WriteLine(CommandOutletColor.DarkMagenta, "({0})", ResourceUtility.GetString("${Disabled}"));
-			else
+			if(listener is IWorker && ((IWorker)listener).Enabled)
 				output.WriteLine();
+			else
+				output.WriteLine(CommandOutletColor.DarkMagenta, "({0})", ResourceUtility.GetString("${Disabled}"));
 		}
 
 		private IChannel GetActiveChannel(CommandTreeNode node)
