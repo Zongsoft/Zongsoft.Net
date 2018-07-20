@@ -91,12 +91,12 @@
 
 	<!-- 挂载通讯服务提供程序 -->
 	<extension path="/Workspace/Services/Providers">
-		<serviceProvider name="Communication" />
+		<object name="Communication" type="Zongsoft.Services.PluginServiceProvider, Zongsoft.Plugins" />
 	</extension>
 
 	<!-- 链接通讯服务容器 -->
 	<extension path="/Workspace/Services">
-		<link ref="../Providers/Communication" />
+		<object name="Communication" value="{path:../Providers/Communication}" />
 	</extension>
 
 	<!-- 挂载“通讯”相关的各种服务 -->
