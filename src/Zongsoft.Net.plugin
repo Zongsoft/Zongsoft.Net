@@ -82,11 +82,11 @@
 
 	<!-- 挂载“通讯”相关的选项配置（请确保配置文件中含有该选项设置） -->
 	<extension path="/Workbench/Options">
-		<option name="Communication" title="{res:Text.Communication}">
-			<option name="Net" title="{res:Text.Net}">
-				<option name="FtpServer" title="{res:Text.FtpServer}" provider="." />
-			</option>
-		</option>
+		<object name="Communication" title="{res:Text.Communication}">
+			<object name="Net" title="{res:Text.Net}">
+				<object name="FtpServer" title="{res:Text.FtpServer}" />
+			</object>
+		</object>
 	</extension>
 
 	<!-- 挂载通讯服务提供程序 -->
