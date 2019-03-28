@@ -80,13 +80,15 @@
 		<object name="FtpClient" type="Zongsoft.Communication.Net.FtpClient, Zongsoft.Net" />
 	</extension>
 
-	<!-- 挂载“通讯”相关的选项配置（请确保配置文件中含有该选项设置） -->
+	<!-- 设置“通讯”相关的选项配置标题 -->
 	<extension path="/Workbench/Options">
-		<object name="Communication" title="{res:Text.Communication}">
-			<object name="Net" title="{res:Text.Net}">
-				<object name="FtpServer" title="{res:Text.FtpServer}" />
-			</object>
-		</object>
+		<communication.title>{res:Text.Communication}</communication.title>
+	</extension>
+	<extension path="/Workbench/Options/Communication">
+		<net.title>{res:Text.Net}</net.title>
+	</extension>
+	<extension path="/Workbench/Options/Communication/Net">
+		<ftpServer.title>{res:Text.FtpServer}</ftpServer.title>
 	</extension>
 
 	<!-- 挂载通讯服务提供程序 -->
