@@ -1,7 +1,10 @@
-Zongsoft.Net
-============
+# Zongsoft.Net
 
-## 概述
+![license](https://img.shields.io/github/license/Zongsoft/Zongsoft.Net) ![download](https://img.shields.io/nuget/dt/Zongsoft.Net) ![version](https://img.shields.io/github/v/release/Zongsoft/Zongsoft.Net?include_prereleases) ![github stars](https://img.shields.io/github/stars/Zongsoft/Zongsoft.Net?style=social)
+
+README: [English](https://github.com/Zongsoft/Zongsoft.Net/blob/master/README.md) | [简体中文](https://github.com/Zongsoft/Zongsoft.Net/blob/master/README-zh_CN.md)
+
+-----
 
 该项目是关于高性能TCP通讯处理的类库，实现采用的是 .NET Socket 提供的异步事件处理模型机制，在 Windows 平台中由底层 WinSocket 提供IOCP支持。
 
