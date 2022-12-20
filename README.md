@@ -5,6 +5,8 @@
 README: [English](https://github.com/Zongsoft/Zongsoft.Net/blob/master/README.md) | [简体中文](https://github.com/Zongsoft/Zongsoft.Net/blob/master/README-zh_CN.md)
 
 -----
+注：该项目已归档，对应的替代版本请参考：https://github.com/Zongsoft/Framework/blob/master/Zongsoft.Net
+-----
 
 该项目是关于高性能TCP通讯处理的类库，实现采用的是 .NET Socket 提供的异步事件处理模型机制，在 Windows 平台中由底层 WinSocket 提供IOCP支持。
 
